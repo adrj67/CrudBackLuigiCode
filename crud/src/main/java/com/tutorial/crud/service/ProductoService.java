@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tutorial.crud.repository.ProductoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @Transactional
@@ -14,6 +16,11 @@ public class ProductoService {
     
     @Autowired
     ProductoRepository productoRepository;
+    
+    //para la Paginacion
+    public Page<Producto> paginas (Pageable pageable){
+        return productoRepository.findAll(pageable);
+    }
     
     //Listar Todos
     public List<Producto> list(){

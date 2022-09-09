@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.tutorial.crud.service.ProductoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping ("/producto")
@@ -27,11 +32,26 @@ public class ProductoControler {
     @Autowired
     ProductoService productoService;
     
-    @GetMapping("/lista")
+    @GetMapping("/lista")//reemplazado por paginacion
     public ResponseEntity<List<Producto>> list(){
         List<Producto> list = productoService.list();
         //return new ResponseEntity<List<Producto>>(list, HttpStatus.OK); asi tambien funciona
         return new ResponseEntity(list, HttpStatus.OK);
+    }
+    
+     @GetMapping("/productos")//agregado para la paginacion
+    public ResponseEntity<Page<Producto>> paginas (
+            @RequestParam (defaultValue = "0")int page,
+            @RequestParam (defaultValue = "5")int size,
+            @RequestParam (defaultValue = "nombre") String order,
+            @RequestParam (defaultValue = "true") boolean asc
+    ){
+        Page<Producto> productos = productoService.paginas(
+                PageRequest.of(page, size, Sort.by(order)));
+        if (!asc)
+            productos = productoService.paginas(
+                PageRequest.of(page, size, Sort.by(order).descending()));
+        return new ResponseEntity<Page<Producto>>(productos, HttpStatus.OK);
     }
     
     @GetMapping("/detail/{id}")
@@ -50,6 +70,7 @@ public class ProductoControler {
         return new ResponseEntity(producto, HttpStatus.OK);
     }
     
+    //@PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create (@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getNombre()))
@@ -63,6 +84,7 @@ public class ProductoControler {
         return new ResponseEntity (new Mensaje("producto creado"), HttpStatus.OK);
     }
    
+    //@PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update (@PathVariable ("id") int id, @RequestBody ProductoDto productoDto){
         if (!productoService.existsById(id))
@@ -81,6 +103,7 @@ public class ProductoControler {
         return new ResponseEntity (new Mensaje("producto actualizado"), HttpStatus.OK);
     }
     
+    //@PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable ("id") int id){
         if (!productoService.existsById(id))
