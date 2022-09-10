@@ -21,7 +21,7 @@ import com.tutorial.crud.service.ProductoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -70,7 +70,7 @@ public class ProductoControler {
         return new ResponseEntity(producto, HttpStatus.OK);
     }
     
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create (@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getNombre()))
@@ -84,7 +84,7 @@ public class ProductoControler {
         return new ResponseEntity (new Mensaje("producto creado"), HttpStatus.OK);
     }
    
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update (@PathVariable ("id") int id, @RequestBody ProductoDto productoDto){
         if (!productoService.existsById(id))
@@ -103,7 +103,7 @@ public class ProductoControler {
         return new ResponseEntity (new Mensaje("producto actualizado"), HttpStatus.OK);
     }
     
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable ("id") int id){
         if (!productoService.existsById(id))
