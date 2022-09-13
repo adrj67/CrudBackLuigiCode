@@ -1,23 +1,27 @@
 package com.tutorial.crud.security.dto;
 
-import java.util.Collection;
-import org.springframework.security.core.GrantedAuthority;
+/*import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;*/
 
 
 public class JwtDto {
     private String token;
+    /*Se elimina esta parte para tener mayor seguridad (Video 14)
+    ya que con la herramientas de desarrollador se podia cambiar el ROL y el USER
+    
     private String bearer = "Bearer";
     private String nombreUsuario;
-    private Collection <? extends GrantedAuthority> authorities;
+    private Collection <? extends GrantedAuthority> authorities;*/
     
     
     public JwtDto() {
     }
 
-    public JwtDto(String token, String nombreUsuario, Collection<? extends GrantedAuthority> authorities) {
+    public JwtDto(String token) { //, String nombreUsuario, 
+        //Collection<? extends GrantedAuthority> authorities)}
         this.token = token;
-        this.nombreUsuario = nombreUsuario;
-        this.authorities = authorities;
+        /*this.nombreUsuario = nombreUsuario;
+        this.authorities = authorities;*/
     }
 
 
@@ -29,7 +33,7 @@ public class JwtDto {
         this.token = token;
     }
 
-    public String getBearer() {
+    /*public String getBearer() {
         return bearer;
     }
 
@@ -51,5 +55,5 @@ public class JwtDto {
 
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
-    }
+    }*/
 }
