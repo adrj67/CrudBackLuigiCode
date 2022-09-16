@@ -11,6 +11,7 @@ import com.tutorial.crud.security.enums.RolNombre;
 import com.tutorial.crud.security.jwt.JwtProvider;
 import com.tutorial.crud.security.service.RolService;
 import com.tutorial.crud.security.service.UsuarioService;
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.Valid;
@@ -83,5 +84,12 @@ public class AuthControler {
         // video 14 UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto (jwt);//video 14 , userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity <JwtDto> (jwtDto, HttpStatus.OK);
+    }
+    
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtDto> refresh (@RequestBody JwtDto jwtDto) throws ParseException {
+        String token = jwtProvider.refreshToken(jwtDto);
+        JwtDto jwt = new JwtDto (token);
+        return new ResponseEntity(jwt, HttpStatus.OK);
     }
 }
