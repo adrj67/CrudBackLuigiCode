@@ -1,5 +1,5 @@
-
-/*package com.tutorial.crud.util;
+/*
+package com.tutorial.crud.util;
 
 //una vez que se crearon los roles, se elimina todo el paquete para que no vuelva a crearlos
 
@@ -21,5 +21,4 @@ public class CreateRoles implements CommandLineRunner {
         rolService.save(rolAdmin);
         rolService.save(rolUser);
     }
-}
-*/
+}*/
