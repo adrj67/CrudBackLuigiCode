@@ -18,6 +18,10 @@ public class UsuarioService {
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
     
+    public Optional<Usuario> getByNombreUsusarioOrEmail (String nombreOrEmail){
+        return usuarioRepository.findByNombreUsuarioOrEmail(nombreOrEmail, nombreOrEmail);
+    }
+    
     public boolean existsByNombreUsuario (String nombreUsuario){
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
