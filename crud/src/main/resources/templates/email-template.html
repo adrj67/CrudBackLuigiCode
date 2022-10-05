@@ -6,16 +6,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="en">
     <html xmlns:th="http://www.thymeleaf.org"> <!--xmlns="http://www.w3.org/1999/xhtml">-->
     <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
         <title>Recuperar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+   <style>
+    div.container {
+        height: 30px;
+        margin: 20px;
+        border: 5px solid;
+        background-color: #00FFFF;
+        text-align: center       
+    }
+   </style>
     <body>
-        <div>TODO write content</div>
-        <h2>Recuperar Contraseña</h2>
+        <div class="container"><h1>Email para cambiar tu contraseña del CRUD</h1></div>
+       
+    <spam><h2>Cambie su contraseña</h2>
         <h3><span>Hola </span><span th:text="${userName}"></span></h3>
-        <h4>Haz click en el siguiente enlace para acceder a tu cuenta</h4>
-        <a th:href="@{${url}}"><button>Ir a tu Cuenta</button></a>
+        <h4>Estimado usuario <span th:text="${userName}"></span>:
+
+        <p>Recibimos una solicitud para cambiar tu contraseña. No reenvíes 
+        ni proporciones este email a otra persona.</p>
+        <p>Para cambiar tu contraseña, haz click en el siguiente boton, en la pagina a la que seras derivado 
+            deberas colocar tu nueva contraseña.</p>
+        
+        <p><a th:href="@{${url}}" class="btn btn-success"><button>Cambiar Contraseña</button></a></p>
+
+        <p>Atentamente.</p>
+
+        El equipo de cuentas de CRUD.</h4> </spam>
     
     </body>
 </html>
