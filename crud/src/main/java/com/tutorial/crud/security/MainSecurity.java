@@ -46,7 +46,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
                 .antMatchers(
                         "/auth/**",
                         "/email-password/**",
-                        "/email/contact" //agregado para ignorar esta url
+                        "/testapp/**" //agregado para ignorar esta url
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
