@@ -50,12 +50,14 @@
             <!--<version>2.0.1.Final</version>-->
             <type>jar</type>
         </dependency>
+        <!-- borre core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>5.7.2</version>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -95,6 +97,12 @@
             <version>3.0.15.RELEASE</version>
             <type>jar</type>
         </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>

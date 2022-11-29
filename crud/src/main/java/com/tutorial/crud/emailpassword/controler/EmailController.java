@@ -39,7 +39,7 @@ public class EmailController {
     @Value("${spring.mail.username}")
     private String mailFrom;
     
-    private static final String subject = "Cambio de Contraseña";
+    private static final String subject = "Cambiar Contraseña en CRUD";
     
     @PostMapping ("/send-email")
     public ResponseEntity<?> sendEmailTemplate(@RequestBody EmailValuesDTO dto){
